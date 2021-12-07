@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+service Repository {
+    rpc add_new_fn(metadata) returns (google.protobuf.StringValue);
+    rpc add_fns(stream metadata) returns (google.protobuf.StringValue);
+    rpc delete_fn(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+    rpc show_fn(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+    rpc show_all_fns(google.protobuf.StringValue) returns (stream google.protobuf.StringValue);
+    rpc show_all_with_criteria(stream metadata) returns (stream google.protobuf.StringValue);
+}
+message metadata {
+    string Version =1;
+	string fullNames = 2;
+	string email = 3;
+    string address = 4;
+    string language = 5;
+	string keywords = 6;
+}

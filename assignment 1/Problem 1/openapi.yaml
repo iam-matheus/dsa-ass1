@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: DSA Students API
+  description: DSA problem 1 API
+  contact:
+    name: Matheus Mulundu
+    email: matheusmulundu01@gmail.com
+    name: Zachary Mouton
+    email: zegozm22@gmail.com
+  version: 1.0.0
+servers:
+  - url: 'virtualSystem' 
+paths:
+  /getLearner{id}:
+    description: Retrieve the learner details.
+    get:
+      description: Operation to retrieve Learner details
+      parameters:
+        - in: query
+          name: Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/learner'
+  /newUser:
+    post:
+      description: Add new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/learner'
+      responses:
+        201:
+          description: User has been successfully created.
+  /updateLearner:
+    put:
+      description: Update one learners' profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/learner'
+      responses:
+        200:
+          description: Learner has successfully updated
+
+  /getLearners:
+    description: Gets all the learners in the stored.
+    get:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/learners'
+                      
+
+components:
+  schemas:
+    learner:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "Matheus"
+        lastname:
+          type: string
+          example: "Mulundu"
+        firstname:
+          type: string
+          example: "Zachary"
+        preferred_formats:
+          type: array
+          items:
+            type: string
+            example: "audio"
+        past_subjects:
+          type: array
+          items:
+            properties:
+              course:
+                type: string
+                example: "Algorithms"
+              score:
+                type: string
+                example: "B+"
+    topic:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "first topic"
+        description:
+          type: string
+          example: "first description"
+        difficulty:
+          type: string
+          example: "first description"
+
+
+
+
+
+
+
+
+
+
+
+
